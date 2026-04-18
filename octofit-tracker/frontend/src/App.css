@@ -1,0 +1,75 @@
+:root {
+  --octo-ink: #18263a;
+  --octo-ocean: #0d6b7a;
+  --octo-mint: #74c9b2;
+  --octo-sand: #f7f1df;
+  --octo-paper: #f9fbfd;
+}
+
+body {
+  background:
+    radial-gradient(1100px 500px at 10% -10%, rgba(116, 201, 178, 0.35), transparent 60%),
+    radial-gradient(1200px 600px at 95% 10%, rgba(13, 107, 122, 0.22), transparent 65%),
+    linear-gradient(180deg, #fefdf8 0%, var(--octo-paper) 40%, #eef4f7 100%);
+  color: var(--octo-ink);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-nav {
+  background-color: rgba(247, 241, 223, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(24, 38, 58, 0.08);
+}
+
+.app-nav .navbar-brand {
+  color: var(--octo-ink);
+  letter-spacing: 0.02em;
+}
+
+.app-nav .nav-link {
+  color: #2f435f;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-nav .nav-link:hover,
+.app-nav .nav-link.active {
+  background-color: rgba(13, 107, 122, 0.12);
+  color: var(--octo-ocean);
+}
+
+.hero {
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.82));
+}
+
+.hero-kicker {
+  color: var(--octo-ocean);
+  letter-spacing: 0.08em;
+}
+
+.table-consistent {
+  table-layout: fixed;
+}
+
+.table-consistent th,
+.table-consistent td {
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.modal-content {
+  border-radius: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .hero .display-5 {
+    font-size: 2rem;
+  }
+}
