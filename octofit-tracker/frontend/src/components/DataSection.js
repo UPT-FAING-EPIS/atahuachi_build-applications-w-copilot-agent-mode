@@ -40,14 +40,14 @@ const buildColumns = (records) => {
   return keys.slice(0, 6);
 };
 
-const DataSection = ({ title, endpointPath, subtitle }) => {
+const DataSection = ({ title, endpointPath, endpoint, subtitle }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const endpoint = `${getApiBaseUrl()}${endpointPath}`;
+  const resolvedEndpoint = endpoint || `${getApiBaseUrl()}${endpointPath}`;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -57,7 +57,7 @@ const DataSection = ({ title, endpointPath, subtitle }) => {
       setError('');
 
       try {
-        const response = await fetch(endpoint, { signal: controller.signal });
+        const response = await fetch(resolvedEndpoint, { signal: controller.signal });
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
@@ -76,7 +76,7 @@ const DataSection = ({ title, endpointPath, subtitle }) => {
     fetchData();
 
     return () => controller.abort();
-  }, [endpoint]);
+  }, [resolvedEndpoint]);
 
   const columns = useMemo(() => buildColumns(data), [data]);
 
@@ -122,7 +122,7 @@ const DataSection = ({ title, endpointPath, subtitle }) => {
         </form>
 
         <div className="d-flex flex-wrap gap-2 mb-3">
-          <a className="btn btn-link px-0 link-primary" href={endpoint} target="_blank" rel="noreferrer">
+          <a className="btn btn-link px-0 link-primary" href={resolvedEndpoint} target="_blank" rel="noreferrer">
             Open API endpoint
           </a>
           <button type="button" className="btn btn-sm btn-outline-primary" onClick={() => setSelectedItem(null)}>
